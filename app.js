@@ -1,5 +1,7 @@
- const { calculateSum, x } = require('./calculate/sum'); // CommonJS require statement
- const { product } = require('./calculate/multiply');
+//  const { calculateSum, x } = require('./calculate/sum'); // CommonJS require statement
+//  const { product } = require('./calculate/multiply');
+
+const {calculateSum, product} = require('./calculate');
 
 // ES6 import statement
 // import { calculateSum, x } from './sum.js';

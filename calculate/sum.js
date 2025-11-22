@@ -1,7 +1,3 @@
-console.log("Sum module loaded");
-
- var x = "Hello from sum.js";
-
 
 function calculateSum(a , b) {
     const sum = a + b;
@@ -9,4 +5,4 @@ function calculateSum(a , b) {
 }
 
 // Exporting using CommonJS syntax
- module.exports = { calculateSum, x }; 
+ module.exports = { calculateSum}; 
