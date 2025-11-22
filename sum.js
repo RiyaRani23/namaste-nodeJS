@@ -7,7 +7,9 @@ function calculateSum(a , b) {
     return sum;
 }
 
-module.exports = {
-    calculateSum: calculateSum,
-    x: x
-}; 
+// module.exports = {
+//     calculateSum: calculateSum,
+//     x: x
+// };  // old way of exporting
+
+module.exports = { calculateSum, x }; // ES6 shorthand property names
