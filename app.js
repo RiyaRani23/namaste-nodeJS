@@ -1,8 +1,9 @@
-const obj = require('./sum');
+ const { calculateSum, x } = require('./calculate/sum'); // CommonJS require statement
 
-// const { calculateSum, x } = require('./sum'); no need to write  obj
+// ES6 import statement
+// import { calculateSum, x } from './sum.js';
 
-console.log("Sum is:", obj.calculateSum(5, 10));
-console.log(obj.x);
+console.log("Sum is:", calculateSum(5, 10));
+console.log(x);
 
 
