@@ -5,7 +5,9 @@ console.log("Hello world!");
 var a = 123456;
 var b = 654321;
 
-// Password-based key derivation function
+// pbkdf2 - Password-based key derivation function
+
+// Sync Function - WILL BLOCK THE MAIN THREAD - DON'T USE IT
 crypto.pbkdf2Sync("password", "salt", 500000, 64, "sha512");
 console.log("Synchronous key is generated:");
 
