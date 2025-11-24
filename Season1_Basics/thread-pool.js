@@ -1,6 +1,8 @@
 const fs = require("fs");
 const crypto = require("crypto");
 
+process.env.UV_THREADPOOL_SIZE = 8; // Default is 4
+
 crypto.pbkdf2("password", "salt", 500000, 50, "sha512", () => {
     console.log("PBKDF2 1 completed");
 });
