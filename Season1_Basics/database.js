@@ -16,7 +16,8 @@ async function main() {
     // Read
     const findResult = await collection.find({}).toArray();
     console.log('Found documents =>', findResult);
-
+   
+    // insert data 
     const data = {
         firstname: 'Aanvi',
         lastname: 'Kumar',
@@ -24,8 +25,16 @@ async function main() {
         phoneNumber: '349999'
     };
     
-    const insertResult = await collection.insertOne(data);
-    console.log('Inserted documents =>', insertResult);
+     const insertResult = await collection.insertOne(data);
+     console.log('Inserted documents =>', insertResult);
+
+    // Update data
+      const updateResult = await collection.updateOne({ firstname: 'Riya' }, { $set: { city: 'Pune' } });
+     console.log('Updated documents =>', updateResult);
+
+    // delete data
+    const deleteResult = await collection.deleteMany({ firstname: 'Aanvi' });
+    console.log('Deleted documents =>', deleteResult);
 
     return "done.";
 }
