@@ -6,10 +6,11 @@ app.use("/hello", (req, res) => {
 })
 
 app.use("/test",(req, res) => {
-    res.send("Hello, Test " ); 
+    res.send(" Test " ); 
 })
 
-// Default route 
+// Default route , when no other route matches .
+// Order of the routes matter a lot.  
 app.use("/",(req, res) => {
     res.send("Hello, DevTinder!" ); 
 })
