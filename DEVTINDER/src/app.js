@@ -1,18 +1,23 @@
 const express = require("express");
 const app = express();
 
-app.use("/hello", (req, res) => {
-    res.send("Hello, Hello , Namaste!" ); 
-})
+// This route handles GET requests to /user
+app.get("/user", (req, res) => {
+  res.send({firstName: "Riya", lastNmae:"Rani"}); 
+});
+
+app.post("/user", (req, res) => {
+    // Saving data to the database 
+  res.send(" Data successfully saved to the database! "); 
+});
+
+app.delete("/user", (req, res) => {
+    // Deleting data from the database 
+  res.send(" Data successfully deleted ");
+});
 
 app.use("/test",(req, res) => {
     res.send(" Test " ); 
-})
-
-// Default route , when no other route matches .
-// Order of the routes matter a lot.  
-app.use("/",(req, res) => {
-    res.send("Hello, DevTinder!" ); 
 })
 
 app.listen(3000, () => {
