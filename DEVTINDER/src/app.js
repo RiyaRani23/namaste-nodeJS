@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 
-// This route handles GET requests to /user
-app.get(/fly*/, (req, res) => {
+
+app.get("/user/:userId/:name/:password", (req, res) => {
+    console.log(req.params); // Logs the route parameters
   res.send({firstName: "Riya", lastNmae:"Rani"}); 
 });
 
