@@ -1,16 +1,17 @@
 const express = require("express");
 const app = express();
 
-app.use("home",(req, res) => {
-    res.send("Hello, DevTinder!" ); 
-})
-
 app.use("/hello", (req, res) => {
     res.send("Hello, Hello , Namaste!" ); 
 })
 
 app.use("/test",(req, res) => {
     res.send("Hello, Test " ); 
+})
+
+// Default route 
+app.use("/",(req, res) => {
+    res.send("Hello, DevTinder!" ); 
 })
 
 app.listen(3000, () => {
