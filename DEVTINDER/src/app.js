@@ -3,16 +3,11 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
-app.post("/signup", async (req, res) => {
-  // Creating a new instance of User model
-   const user = new User( {
-    firstName: "Aarav",
-    lastName: "Kumar",
-    emailId: "aarav@234.com",
-    password: "aarav123",
-    
-   });
+app.use(express.json());
 
+app.post("/signup", async (req, res) => {
+  const user = new User(req.body);
+  
    try{
        await user.save();
        res.send("User added Successfully");
@@ -21,7 +16,24 @@ app.post("/signup", async (req, res) => {
        res.status(400).send("Error creating user:" + err.message);
    }
   
-})
+});
+
+// Get user by email
+app.get("/user/:emailId", async (req, res) => {
+  const userEmail = req.body.emailId;
+  try {
+    const user = await User.find({ emailId: userEmail });
+    if (useSyncExternalStore.length === 0)  {
+      return res.status(404).send("User not found");
+    }
+    res.send(user);
+  } catch (err) {
+    res.status(400).send("Something went wrong ");
+  }
+});
+
+app.get("/feed", (req, res) => {});
+
 connectDB()
     .then(() => {
         console.log("Database connected successfully");
