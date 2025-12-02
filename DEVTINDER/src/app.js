@@ -19,12 +19,12 @@ app.post("/signup", async (req, res) => {
 });
 
 // Get user by email
-app.get("/user/:emailId", async (req, res) => {
+app.get("/user", async (req, res) => {
   const userEmail = req.body.emailId;
   try {
-    const user = await User.find({ emailId: userEmail });
-    if (useSyncExternalStore.length === 0)  {
-      return res.status(404).send("User not found");
+    const user = await User.findOne({ emailId: userEmail });
+    if (user.length === 0)  {
+       res.status(404).send("User not found");
     }
     res.send(user);
   } catch (err) {
@@ -32,7 +32,10 @@ app.get("/user/:emailId", async (req, res) => {
   }
 });
 
-app.get("/feed", (req, res) => {});
+app.get("/feed", async (req, res) => {
+  const user = await User.find({});
+  res.send(user);
+});
 
 connectDB()
     .then(() => {
