@@ -49,10 +49,13 @@ app.delete("/user", async (req, res) => {
 });
 
 app.patch("/user", async (req, res) => {
-  const userId = req.body.userId;
+  const emailId = req.body.emailId;
   const data = req.body; 
   try{
-     await User.findByIdAndUpdate({_id: userId}, data);
+     await User.findOneAndUpdate({emailId : emailId}, data,{
+      returnDocument: 'after',
+     });
+     console.log(data);
      res.send("User updated Successfully");
   } catch (err) {
     res.status(400).send("Something went wrong ");
