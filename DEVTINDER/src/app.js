@@ -51,16 +51,41 @@ app.delete("/user", async (req, res) => {
 app.patch("/user", async (req, res) => {
   const emailId = req.body.emailId;
   const data = req.body; 
-  try{
-     await User.findOneAndUpdate({emailId : emailId}, data,{
+
+  try {
+    const ALLOWED_UPDATES = ['userId',
+           'photoUrl',
+            'password',
+            'about',
+            'gender',
+             'age',
+             'skills'
+            ];
+
+  const isUpdateAllowed = Object.keys(data).every((k) =>
+    ALLOWED_UPDATES.includes(k)
+   );  
+    if (!isUpdateAllowed) {
+         throw new Error(" Update not allowed!");
+    }
+    if(data?.skills.length > 10){
+      throw new Error("Cannot add more than 10 skills");
+    };
+
+    const user = await User.findOneAndUpdate({emailId : emailId}, data,{
       returnDocument: 'after',
+      runValidators: true,
      });
-     console.log(data);
-     res.send("User updated Successfully");
-  } catch (err) {
-    res.status(400).send("Something went wrong ");
+
+      console.log(data);
+      res.send("User updated Successfully");
+      } catch (err) {
+      res.status(400).send("User update failed: " + err.message);
+     }
   }
-});
+);
+
+// Connect to the database and start the server
 
 connectDB()
     .then(() => {
