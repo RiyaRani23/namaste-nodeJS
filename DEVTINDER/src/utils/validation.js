@@ -10,7 +10,7 @@ const validateSignUpData = (req) => {
     } else if(!password || !validator.isStrongPassword(password)) {
         throw new Error("A strong password is required");
     }
-
+};
 module.exports = {
-    validateSignUpData
-}
+    validateSignUpData,
+};

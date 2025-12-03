@@ -11,6 +11,8 @@ app.post("/signup", async (req, res) => {
     // Validate input data
      validateSignUpData(req);
 
+     
+
      // Save user to the database
       const user = new User(req.body);
 
